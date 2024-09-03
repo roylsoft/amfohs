@@ -127,6 +127,7 @@ export default function DashProfile() {
         setUpdateUserSuccess("User's profile updated successfully");
       }
     } catch (error) {
+      console.log(error);
       dispatch(updateFailure(error.message));
       setUpdateUserError(error.message);
     }
