@@ -1,8 +1,9 @@
-import User from '../models/user.model.js';
-import bcryptjs from 'bcryptjs';
-import { errorHandler } from '../utils/error.js';
-import jwt from 'jsonwebtoken';
-
+import User from "../models/user.model.js";
+import bcryptjs from "bcryptjs";
+import { errorHandler } from "../utils/error.js";
+import jwt from "jsonwebtoken";
+import dotenv from 'dotenv';
+dotenv.config();
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
 
@@ -10,24 +11,26 @@ export const signup = async (req, res, next) => {
     !username ||
     !email ||
     !password ||
-    username === '' ||
-    email === '' ||
-    password === ''
+    username === "" ||
+    email === "" ||
+    password === ""
   ) {
-    next(errorHandler(400, 'All fields are required'));
+    next(errorHandler(400, "All fields are required"));
   }
 
   const hashedPassword = bcryptjs.hashSync(password, 10);
+  console.log(password);
+  console.log(hashedPassword);
 
   const newUser = new User({
     username,
     email,
-    password: hashedPassword,
+    password: hashedPassword
   });
 
   try {
     await newUser.save();
-    res.json('Signup successful');
+    res.json("Signup successful");
   } catch (error) {
     next(error);
   }
@@ -35,19 +38,19 @@ export const signup = async (req, res, next) => {
 
 export const signin = async (req, res, next) => {
   const { email, password } = req.body;
-
-  if (!email || !password || email === '' || password === '') {
-    next(errorHandler(400, 'All fields are required'));
+  console.log(req.body);
+  if (!email || !password || email === "" || password === "") {
+    next(errorHandler(400, "All fields are required"));
   }
 
   try {
     const validUser = await User.findOne({ email });
     if (!validUser) {
-      return next(errorHandler(404, 'User not found'));
+      return next(errorHandler(404, "User not found"));
     }
     const validPassword = bcryptjs.compareSync(password, validUser.password);
     if (!validPassword) {
-      return next(errorHandler(400, 'Invalid password'));
+      return next(errorHandler(400, "Invalid password"));
     }
     const token = jwt.sign(
       { id: validUser._id, isAdmin: validUser.isAdmin },
@@ -58,19 +61,26 @@ export const signin = async (req, res, next) => {
 
     res
       .status(200)
-      .cookie('access_token', token, {
-        httpOnly: true,
+      .cookie("access_token", token, {
+        httpOnly: true
       })
       .json(rest);
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
 
 export const google = async (req, res, next) => {
   const { email, name, googlePhotoUrl } = req.body;
+  console.log(req.body);
+  console.log(name);
+  console.log(email);
+  console.log(googlePhotoUrl);
   try {
     const user = await User.findOne({ email });
+    console.log(user);
+    console.log(email);
     if (user) {
       const token = jwt.sign(
         { id: user._id, isAdmin: user.isAdmin },
@@ -79,8 +89,8 @@ export const google = async (req, res, next) => {
       const { password, ...rest } = user._doc;
       res
         .status(200)
-        .cookie('access_token', token, {
-          httpOnly: true,
+        .cookie("access_token", token, {
+          httpOnly: true
         })
         .json(rest);
     } else {
@@ -90,11 +100,11 @@ export const google = async (req, res, next) => {
       const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
       const newUser = new User({
         username:
-          name.toLowerCase().split(' ').join('') +
+          name.toLowerCase().split(" ").join("") +
           Math.random().toString(9).slice(-4),
         email,
         password: hashedPassword,
-        profilePicture: googlePhotoUrl,
+        profilePicture: googlePhotoUrl
       });
       await newUser.save();
       const token = jwt.sign(
@@ -104,12 +114,13 @@ export const google = async (req, res, next) => {
       const { password, ...rest } = newUser._doc;
       res
         .status(200)
-        .cookie('access_token', token, {
-          httpOnly: true,
+        .cookie("access_token", token, {
+          httpOnly: true
         })
         .json(rest);
     }
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
