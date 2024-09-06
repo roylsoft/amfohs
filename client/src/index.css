@@ -14,6 +14,49 @@ body {
   margin-bottom: 0.5rem;
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes gauche {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes droite {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.gauche {
+  animation: gauche 1s ease forwards;
+}
+
+.droite {
+  animation: droite 1s ease forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-in-out;
+}
+
 .post-content h1 {
   font-size: 1.5rem;
   font-weight: 600;
