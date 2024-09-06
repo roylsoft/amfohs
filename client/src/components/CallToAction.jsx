@@ -2,10 +2,10 @@ import { Button } from "flowbite-react";
 
 export default function CallToAction() {
   return (
-    <div className="flex flex-col sm:flex-row p-3 border border-teal-500 justify-center items-center rounded-tl-3xl rounded-br-3xl text-center">
+    <div className="bg-blue-900 text-white flex flex-col sm:flex-row p-3 border border-teal-500 justify-center items-center rounded-tl-3xl rounded-br-3xl text-left">
       <div className="flex-1 justify-center flex flex-col gauche">
         <h2 className="text-4xl flex-1 justify-center flex items-start flex-col">Who are we?</h2>
-        <p className="text-gray-50 my-2 flex-1 justify-center flex items-start flex-col">
+        <p className="text-gray my-2 flex-1 justify-center flex items-start flex-col">
           Alheri Medical Foundation and Humanitarian Services (AMFOHS) was
           established in February 2019 by Dr. Tata Devine, originally as a
           medical foundation. The primary mission at its inception was to

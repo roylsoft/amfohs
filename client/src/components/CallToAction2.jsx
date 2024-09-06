@@ -2,9 +2,9 @@ import { Button } from "flowbite-react";
 
 export default function CallToAction2() {
   return (
-    <div className="flex flex-col sm:flex-row p-3 border border-teal-500 justify-center items-center rounded-tl-3xl rounded-br-3xl text-center">
+    <div className="flex flex-col sm:flex-row p-3 bg-blue-900 border border-teal-500 justify-center items-center rounded-tl-3xl rounded-br-3xl text-left">
       <div className="flex-1 justify-center flex flex-col gauche">
-        <h2 className="text-6xl flex-1 justify-center flex items-start flex-col">
+        <h2 className="text-4xl flex-1 justify-center flex items-start flex-col text-white">
           Our Values
         </h2>
         <p className="text-gray-50 my-2 flex-1 justify-center flex items-start flex-col">

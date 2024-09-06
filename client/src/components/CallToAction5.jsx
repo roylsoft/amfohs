@@ -2,7 +2,7 @@ import { Button } from "flowbite-react";
 
 export default function CallToAction5() {
   return (
-    <div className="flex flex-col sm:flex-row p-3 border border-teal-500 justify-center items-center rounded-tl-3xl rounded-br-3xl text-center">
+    <div className="flex flex-col sm:flex-row p-3 border border-teal-500 justify-center items-center rounded-tl-3xl rounded-br-3xl text-left">
       <div className="p-1 flex-1 grache">
         <img src="../src/assets/WhatsApp Image 2024-08-10 at 21.12.05 (1).jpeg" />
         

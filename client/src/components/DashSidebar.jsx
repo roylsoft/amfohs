@@ -88,6 +88,24 @@ export default function DashSidebar() {
                   Users
                 </Sidebar.Item>
               </Link>
+              <Link to='/dashboard?tab=projects'>
+                <Sidebar.Item
+                  active={tab === 'projects'}
+                  icon={HiAnnotation}
+                  as='div'
+                >
+                  Projects
+                </Sidebar.Item>
+              </Link>
+              <Link to='/dashboard?tab=members'>
+                <Sidebar.Item
+                  active={tab === 'members'}
+                  icon={HiAnnotation}
+                  as='div'
+                >
+                  Members
+                </Sidebar.Item>
+              </Link>
               <Link to='/dashboard?tab=comments'>
                 <Sidebar.Item
                   active={tab === 'comments'}

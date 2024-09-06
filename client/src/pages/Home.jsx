@@ -44,14 +44,14 @@ export default function Home() {
   return (
     <div>
       {/* Carrousel d'Images */}
-      <Slider {...settings} className="relative h-96">
+      <Slider {...settings} className="relative h-100">
         {images.map((src, index) =>
           <div key={index} className="flex items-center justify-center">
             <div className="relative w-full h-full overflow-hidden">
               <img
                 src={src}
                 alt={`Image ${index + 1}`}
-                className="object-cover w-full h-80 transition-transform duration-1000 ease-in-out transform hover:scale-110"
+                className="object-cover w-full h-100 transition-transform duration-1000 ease-in-out transform hover:scale-110"
               />
             </div>
             <div className="absolute inset-0 bg-black opacity-10" />
@@ -61,11 +61,11 @@ export default function Home() {
       {/* Fin Carrousel d'Images */}
 
       {/* Contenu de la Bannière */}
-      <div className="flex flex-col gap-6 p-60 px-3 max-w-6xl mx-auto absolute top-20 left-0 right-0">
+      <div className="flex flex-col gap-6 p-70 px-3 max-w-6xl mx-auto absolute top-80 left-0 right-0">
         <h1 className="text-3xl font-bold lg:text-6xl text-white">
           AMFOHS ACTION
         </h1>
-        <p className="text-gray-200text-xs sm:text-sm">
+        <p className="text-gray-200 text-xs sm:text-sm">
         ACTION FOR A BETTER WORLD
         </p>
         <Link
@@ -75,7 +75,7 @@ export default function Home() {
           View all posts
         </Link>
       </div>
-      <div className="p-6 bg-amber-100 dark:bg-slate-700">
+      <div className="p-6">
         <CallToAction />
       </div>
       {/* Fin Bannière */}
@@ -98,10 +98,10 @@ export default function Home() {
             </Link>
           </div>}
       </div>
-      <div className="p-6 bg-amber-100 dark:bg-slate-700">
+      <div className="p-6">
         <CallToAction1 />
       </div>
-      <div className="p-6 bg-amber-100 dark:bg-slate-700">
+      <div className="p-6">
         <CallToAction2 />
       </div>
       {/* <div className='p-6 bg-amber-100 dark:bg-slate-700'>

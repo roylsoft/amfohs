@@ -13,11 +13,18 @@ export default function DashboardComp() {
   const [users, setUsers] = useState([]);
   const [comments, setComments] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [project, setProject] = useState([]);
+  const [member, setMember] = useState([]);
   const [totalUsers, setTotalUsers] = useState(0);
   const [totalPosts, setTotalPosts] = useState(0);
+  const [totalProject, setTotalProject] = useState(0);
+  const [totalMember, setTotalMember] = useState(0);
   const [totalComments, setTotalComments] = useState(0);
   const [lastMonthUsers, setLastMonthUsers] = useState(0);
   const [lastMonthPosts, setLastMonthPosts] = useState(0);
+  const [lastMonthProject, setLastMonthProject] = useState(0);
+  
+  const [lastMonthMtotalMember, setLastMonthMembers] = useState(0);
   const [lastMonthComments, setLastMonthComments] = useState(0);
   const { currentUser } = useSelector((state) => state.user);
   useEffect(() => {
@@ -47,6 +54,32 @@ export default function DashboardComp() {
         console.log(error.message);
       }
     };
+    const fetchProjects = async () => {
+      try {
+        const res = await fetch('/api/project/getproject?limit=5');
+        const data = await res.json();
+        if (res.ok) {
+          setProject(data.posts);
+          setTotalProject(data.totalPosts);
+          setLastMonthProject(data.lastMonthPosts);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    const fetchMember = async () => {
+      try {
+        const res = await fetch('/api/member/getmembers?limit=5');
+        const data = await res.json();
+        if (res.ok) {
+          setMember(data.posts);
+          setTotalMember(data.totalPosts);
+          setLastMonthMembers(data.lastMonthPosts);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
     const fetchComments = async () => {
       try {
         const res = await fetch('/api/comment/getcomments?limit=5');
@@ -63,6 +96,8 @@ export default function DashboardComp() {
     if (currentUser.isAdmin) {
       fetchUsers();
       fetchPosts();
+      fetchProjects();
+      fetchMember();
       fetchComments();
     }
   }, [currentUser]);
@@ -81,6 +116,38 @@ export default function DashboardComp() {
             <span className='text-green-500 flex items-center'>
               <HiArrowNarrowUp />
               {lastMonthUsers}
+            </span>
+            <div className='text-gray-500'>Last month</div>
+          </div>
+        </div>
+        <div className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
+          <div className='flex justify-between'>
+            <div className=''>
+              <h3 className='text-gray-500 text-md uppercase'>Total Members</h3>
+              <p className='text-2xl'>{totalMember}</p>
+            </div>
+            <HiOutlineUserGroup className='bg-blue-600  text-white rounded-full text-5xl p-3 shadow-lg' />
+          </div>
+          <div className='flex  gap-2 text-sm'>
+            <span className='text-green-500 flex items-center'>
+              <HiArrowNarrowUp />
+              {lastMonthMtotalMember}
+            </span>
+            <div className='text-gray-500'>Last month</div>
+          </div>
+        </div>
+        <div className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
+          <div className='flex justify-between'>
+            <div className=''>
+              <h3 className='text-gray-500 text-md uppercase'>Total Projects</h3>
+              <p className='text-2xl'>{totalProject}</p>
+            </div>
+            <HiDocumentText className='bg-red-600  text-white rounded-full text-5xl p-3 shadow-lg' />
+          </div>
+          <div className='flex  gap-2 text-sm'>
+            <span className='text-green-500 flex items-center'>
+              <HiArrowNarrowUp />
+              {lastMonthProject}
             </span>
             <div className='text-gray-500'>Last month</div>
           </div>
@@ -175,6 +242,7 @@ export default function DashboardComp() {
               ))}
           </Table>
         </div>
+        
         <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800'>
           <div className='flex justify-between  p-3 text-sm font-semibold'>
             <h1 className='text-center p-2'>Recent posts</h1>
@@ -190,6 +258,68 @@ export default function DashboardComp() {
             </Table.Head>
             {posts &&
               posts.map((post) => (
+                <Table.Body key={post._id} className='divide-y'>
+                  <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
+                    <Table.Cell>
+                      <img
+                        src={post.image}
+                        alt='user'
+                        className='w-14 h-10 rounded-md bg-gray-500'
+                      />
+                    </Table.Cell>
+                    <Table.Cell className='w-96'>{post.title}</Table.Cell>
+                    <Table.Cell className='w-5'>{post.category}</Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+              ))}
+          </Table>
+        </div>
+        <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800'>
+          <div className='flex justify-between  p-3 text-sm font-semibold'>
+            <h1 className='text-center p-2'>Recent projects</h1>
+            <Button outline gradientDuoTone='purpleToPink'>
+              <Link to={'/dashboard?tab=projects'}>See all</Link>
+            </Button>
+          </div>
+          <Table hoverable>
+            <Table.Head>
+              <Table.HeadCell>Project image</Table.HeadCell>
+              <Table.HeadCell>Project Title</Table.HeadCell>
+              <Table.HeadCell>Category</Table.HeadCell>
+            </Table.Head>
+            {project &&
+              project.map((post) => (
+                <Table.Body key={post._id} className='divide-y'>
+                  <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
+                    <Table.Cell>
+                      <img
+                        src={post.image}
+                        alt='user'
+                        className='w-14 h-10 rounded-md bg-gray-500'
+                      />
+                    </Table.Cell>
+                    <Table.Cell className='w-96'>{post.title}</Table.Cell>
+                    <Table.Cell className='w-5'>{post.category}</Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+              ))}
+          </Table>
+        </div>
+        <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800'>
+          <div className='flex justify-between  p-3 text-sm font-semibold'>
+            <h1 className='text-center p-2'>Recent projects</h1>
+            <Button outline gradientDuoTone='purpleToPink'>
+              <Link to={'/dashboard?tab=projects'}>See all</Link>
+            </Button>
+          </div>
+          <Table hoverable>
+            <Table.Head>
+              <Table.HeadCell>Member's image</Table.HeadCell>
+              <Table.HeadCell>Member's name</Table.HeadCell>
+              <Table.HeadCell>Category</Table.HeadCell>
+            </Table.Head>
+            {member &&
+              member.map((post) => (
                 <Table.Body key={post._id} className='divide-y'>
                   <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
                     <Table.Cell>

@@ -10,7 +10,7 @@ import {
 import { FaWhatsapp } from "react-icons/fa";
 export default function FooterCom() {
   return (
-    <Footer container className="border border-t-8 border-teal-500">
+    <Footer container className="bg-blue-900 text-white">
       <div className="w-full max-w-7xl mx-auto">
         <div className="grid w-full justify-between sm:flex md:grid-cols-1">
           <div className="mt-5">
@@ -27,7 +27,7 @@ export default function FooterCom() {
               </span>
             </Link>
           </div>
-          <div className="grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 sm:gap-6">
+          <div className="grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 sm:gap-6 text-white">
             <div>
               <Footer.Title title="About" />
               <Footer.LinkGroup col>
@@ -70,7 +70,7 @@ export default function FooterCom() {
           </div>
         </div>
         <Footer.Divider />
-        <div className="w-full sm:flex sm:items-center sm:justify-between">
+        <div className="w-full sm:flex sm:items-center sm:justify-between text-white">
           <Footer.Copyright
             href="#"
             by="AMFOHS Powered by Royalsoftindustry"
