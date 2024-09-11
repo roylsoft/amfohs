@@ -38,8 +38,8 @@ export default function Home() {
     slidesToShow: 1,
     slidesToScroll: 1
   };
-   // Limiter à 8 posts
-   const recentPosts = posts.slice(0, 8);
+  // Limiter à 8 posts
+  const recentPosts = posts.slice(0, 8);
 
   return (
     <div>
@@ -61,12 +61,12 @@ export default function Home() {
       {/* Fin Carrousel d'Images */}
 
       {/* Contenu de la Bannière */}
-      <div className="flex flex-col gap-6 p-70 px-3 max-w-6xl mx-auto absolute top-80 left-0 right-0">
+      <div className="flex flex-col gap-6 p-80 px-3 max-w-6xl mx-auto absolute top-80 left-0 right-0">
         <h1 className="text-3xl font-bold lg:text-6xl text-white">
           AMFOHS ACTION
         </h1>
         <p className="text-gray-200 text-xs sm:text-sm">
-        ACTION FOR A BETTER WORLD
+          ACTION FOR A BETTER WORLD
         </p>
         <Link
           to="/search"
@@ -75,7 +75,7 @@ export default function Home() {
           View all posts
         </Link>
       </div>
-      <div className="p-6">
+      <div className="mt-3 p-6">
         <CallToAction />
       </div>
       {/* Fin Bannière */}

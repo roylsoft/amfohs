@@ -30,7 +30,7 @@ export default function About() {
 
  
   return (
-    <div>
+    <div className=''>
       <Slider {...settings} className="relative h-96">
         {images.map((src, index) => (
           <div key={index} className="flex items-center justify-center">
