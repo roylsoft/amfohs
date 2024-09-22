@@ -23,10 +23,12 @@ import Search1 from './pages/Search1';
 import Search2 from './pages/Search2';
 
 export default function App() {
+  
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Header />
+
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />

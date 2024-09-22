@@ -11,6 +11,7 @@ import "slick-carousel/slick/slick-theme.css"; // Importer le thème de Slick
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const [recentPost, setRecentPosts] = useState(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -20,6 +21,22 @@ export default function Home() {
     };
     fetchPosts();
   }, []);
+
+  // useEffect(() => {
+  //   try {
+  //     const fetchRecentPosts = async () => {
+  //       const res = await fetch(`/api/project/getproject?limit=3`);
+  //       const data = await res.json();
+  //       if (res.ok) {
+  //         setRecentPosts(data.posts);
+  //       }
+  //     };
+  //     fetchRecentPosts();
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // }, []);
+
 
   const images = [
     "../src/assets/image1.jpeg",
@@ -61,20 +78,6 @@ export default function Home() {
       {/* Fin Carrousel d'Images */}
 
       {/* Contenu de la Bannière */}
-      <div className="flex flex-col gap-6 p-80 px-3 max-w-6xl mx-auto absolute top-80 left-0 right-0">
-        <h1 className="text-3xl font-bold lg:text-6xl text-white">
-          AMFOHS ACTION
-        </h1>
-        <p className="text-gray-200 text-xs sm:text-sm">
-          ACTION FOR A BETTER WORLD
-        </p>
-        <Link
-          to="/search"
-          className="text-3xs sm:text-sm text-teal-500 font-bold hover:underline"
-        >
-          View all posts
-        </Link>
-      </div>
       <div className="mt-3 p-6">
         <CallToAction />
       </div>
@@ -101,6 +104,7 @@ export default function Home() {
       <div className="p-6">
         <CallToAction1 />
       </div>
+     
       <div className="p-6">
         <CallToAction2 />
       </div>

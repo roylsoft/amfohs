@@ -93,9 +93,10 @@ export default function Header() {
           <Link to="/search2">Our Team</Link>
         </Navbar.Link>
       </Navbar.Collapse>
-      <span className="mt-3 text-white font-semibold">
-        ACTION FOR BETTER WORLD
+      <span className="mt-3 bg-blue-900 ml-5 text-white font-semibold">
+        AMFOHS : ACTION FOR BETTER WORLD
       </span>
+      
     </Navbar>
   );
 }
