@@ -38,11 +38,11 @@ export default function Home() {
   // }, []);
 
 
-  const images = [
-    "../src/assets/image1.jpeg",
-    "../src/assets/image2.jpeg",
-    "../src/assets/image3.jpeg",
-    "../src/assets/image4.jpeg"
+   const images = [
+    "../public/assets/image1.jpeg",
+    "../public/assets/image2.jpeg",
+    "../public/assets/image3.jpeg",
+    "../public/assets/image4.jpeg"
   ];
 
   // Configuration du carrousel
